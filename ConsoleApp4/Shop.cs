@@ -24,9 +24,10 @@
                 TimeSpan time = date.Date - DateTime.Now.Date;
                 if (!medias.Contains(media)) return false;
                 else if (date <= DateTime.Now) return false;
-                else if (user.Balance < (media.PriceForDay*time.TotalDays)) return false;
-                user.Charge(media.PriceForDay *time.TotalDays);
-                user.medias.Add(media);
+                else if (user.Balance < (media.PriceForDay * time.TotalDays)) return false;
+                else if (media.Copies <= 0) return false;
+                user.Charge(media.PriceForDay * time.TotalDays);
+                user.AddMedia(media);
                 _ = CheckingDate(date, user, media);
                 return true;
             }
@@ -55,12 +56,14 @@
             }
             public async Task CheckingDate(DateTime date,User user, Media media)
             {
-                while (DateTime.Now < date)
-                {
-                    await Task.Delay(10000);
-                }
-                user.medias.Remove(media);
+                await Task.Delay(date - DateTime.Now);
+                user.RemoveMedia(media);
+                media.ChangeAmountOfCopies(1);
             }
+        }
+        public class RentalMenager
+        {
+
         }
     }
 }

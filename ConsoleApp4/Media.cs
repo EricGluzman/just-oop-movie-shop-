@@ -16,6 +16,7 @@
             public void ChangeAmountOfCopies(int amount)
             {
                 Copies += amount;
+                if (Copies < 0) Copies = 0;
             }
             public Media(Movie movie, MediaTypes mediatype, double priceForDay, int Copies)
             {
