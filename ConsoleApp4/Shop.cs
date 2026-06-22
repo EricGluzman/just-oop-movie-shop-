@@ -26,6 +26,7 @@
                 else if (date <= DateTime.Now) return false;
                 else if (user.Balance < (media.PriceForDay * time.TotalDays)) return false;
                 else if (media.Copies <= 0) return false;
+                media.ChangeAmountOfCopies(-1);
                 user.Charge(media.PriceForDay * time.TotalDays);
                 user.AddMedia(media);
                 _ = CheckingDate(date, user, media);
@@ -60,10 +61,6 @@
                 user.RemoveMedia(media);
                 media.ChangeAmountOfCopies(1);
             }
-        }
-        public class RentalMenager
-        {
-
         }
     }
 }

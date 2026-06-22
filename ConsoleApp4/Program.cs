@@ -16,7 +16,7 @@ namespace ConsoleApp4
             var user1 = new User("eric", 100,new List<Media> {media2});
             var shop = new Shop(new List<Media> {media1,media2});
 
-            if (await shop.RentAMovie(media1, user1, new DateTime(2026, 6, 22, 21, 15, 40)))
+            if (await shop.RentAMovie(media1, user1, new DateTime(2026, 6, 22, 16, 10, 0)))
             {
                 Console.WriteLine("Rented the movie!");
             }
